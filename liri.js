@@ -43,13 +43,28 @@ function setName() {
 } // end setMedia
 
 function concertThis() {
-    "https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp"
+    console.log("This is running...");
+    if (name === null) {
+        name = "Trampled By Turtles";
+    }
+    
+    // set the search
+    var search = "https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp"
+
+    // get the data
+    axios.get(search).then(function (response){
+        console.log(name);
+        console.log(response.data.event.venue.name);
+        console.log(response.data.event.venue.city)
+    })
 } // end function
 
 
 
+
 function spotifyThis(name) {
-    if (name == null) {
+    console.log("This is running...");
+    if (name === null) {
         name = "Never gonna give you up";
     }
 } // end function
@@ -57,8 +72,27 @@ function spotifyThis(name) {
 
 
 function movieThis(name) {
+    console.log("This is running...");
+    if (name === null) {
+		name = "Layer Cake";
+    } 
+    
+    // set the search
+    var search = "http://www.omdbapi.com/?t=" + name + "&plot=short&apikey=trilogy";
+    
+    // get the data
+    axios.get(search).then(function (response) {
+        console.log(response.data.Title);
+        console.log(response.data.Released);
+        console.log(response.data.imdbRating);
+        console.log(response.data.tomatoRating);
+        console.log(response.data.Country);
+        console.log(response.data.Language);
+        console.log(response.data.Plot);
+        console.log(response.data.Actors);
+    });
+}; // end function
 
-} // end function
 
 
 
@@ -69,7 +103,7 @@ function doThis() {
                     console.log("There was an error: " + err);
                 }
                 else {
-                    
+
                 }
             });
     } // end function
