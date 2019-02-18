@@ -43,19 +43,19 @@ function setName() {
 } // end setMedia
 
 function concertThis() {
-    console.log("This is running...");
-    if (name === null) {
+    console.log("ConcertThis is working");
+    if (name === "") {
         name = "Trampled By Turtles";
     }
     
-    // set the search
+    // set the search  //******* Where do I limit results? */
     var search = "https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp"
 
     // get the data
     axios.get(search).then(function (response){
-        console.log(name);
-        console.log(response.data.event.venue.name);
-        console.log(response.data.event.venue.city)
+        console.log(response.data);
+        // console.log(response.data.event.venue.name);
+        // console.log(response.data.event.venue.city);
     })
 } // end function
 
@@ -63,8 +63,8 @@ function concertThis() {
 
 
 function spotifyThis(name) {
-    console.log("This is running...");
-    if (name === null) {
+    console.log("SpotifyThis is working");
+    if (name === "") {
         name = "Never gonna give you up";
     }
 } // end function
@@ -72,8 +72,8 @@ function spotifyThis(name) {
 
 
 function movieThis(name) {
-    console.log("This is running...");
-    if (name === null) {
+    console.log("MovieThis is working");
+    if (name === "") {
 		name = "Layer Cake";
     } 
     
