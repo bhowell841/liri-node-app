@@ -120,7 +120,10 @@ function doThis() {
             console.log(data);
 
             var dataArr = data.split(",");
+            var dataArr= dataArr.slice(1).join(" ");
             console.log(dataArr);
+
+            spotifyThis(dataArr);
         }
     });
 } // end function
