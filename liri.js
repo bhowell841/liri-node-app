@@ -2,6 +2,7 @@ require("dotenv").config();
 var fs = require('fs');
 var keys = require("./keys.js");
 var axios = require("axios");
+var Spotify = require('node-spotify-api');
 var input = process.argv;
 var command = process.argv[2];
 
@@ -47,18 +48,16 @@ function concertThis() {
     if (name === "") {
         name = "Trampled By Turtles";
     }
-    
-    // set the search  //******* Where do I limit results? */
-    var search = "https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp"
+
+    // set the search  
+    var search = "https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp&limit=1"
 
     // get the data
-    axios.get(search).then(function (response){
-        console.log(response.data);
-        // console.log(response.data.event.venue.name);
-        // console.log(response.data.event.venue.city);
+    axios.get(search).then(function (response) {
+        console.log(response.data[0].venue.city);
+        console.log(response.data[0].venue.name);
     })
 } // end function
-
 
 
 
@@ -67,6 +66,21 @@ function spotifyThis(name) {
     if (name === "") {
         name = "Never gonna give you up";
     }
+    var spotify = new Spotify({
+        id: process.env.SPOTIFY_ID,
+        secret: process.env.SPOTIFY_SECRET
+    });
+    spotify.search({
+        type: 'track',
+        query: name,
+        limit: 2
+    }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+
+        console.log(JSON.stringify(data, null, 2));
+    });
 } // end function
 
 
@@ -74,22 +88,23 @@ function spotifyThis(name) {
 function movieThis(name) {
     console.log("MovieThis is working");
     if (name === "") {
-		name = "Layer Cake";
-    } 
-    
+        name = "Layer Cake";
+    }
+
     // set the search
     var search = "http://www.omdbapi.com/?t=" + name + "&plot=short&apikey=trilogy";
-    
+
     // get the data
     axios.get(search).then(function (response) {
-        console.log(response.data.Title);
-        console.log(response.data.Released);
-        console.log(response.data.imdbRating);
-        console.log(response.data.tomatoRating);
-        console.log(response.data.Country);
-        console.log(response.data.Language);
-        console.log(response.data.Plot);
-        console.log(response.data.Actors);
+
+        console.log("Movie: " + response.data.Title);
+        console.log("Year: " + response.data.Released);
+        console.log("IMDB Rating: " + response.data.imdbRating);
+        console.log("Rotten Tomatos Rating: " + response.data.tomatoRating);
+        console.log("Country: " + response.data.Country);
+        console.log("Language: " + response.data.Language);
+        console.log("Plot: " + response.data.Plot);
+        console.log("Actors: " + response.data.Actors);
     });
 }; // end function
 
@@ -99,11 +114,13 @@ function movieThis(name) {
 function doThis() {
     console.log("This is running...");
     fs.readFile("random.txt", "utf8", function (err, data) {
-                if (error) {
-                    console.log("There was an error: " + err);
-                }
-                else {
+        if (err) {
+            console.log("There was an error: " + err);
+        } else {
+            console.log(data);
 
-                }
-            });
-    } // end function
+            var dataArr = data.split(",");
+            console.log(dataArr);
+        }
+    });
+} // end function
