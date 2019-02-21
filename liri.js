@@ -3,6 +3,7 @@ var fs = require('fs');
 var keys = require("./keys.js");
 var axios = require("axios");
 var Spotify = require('node-spotify-api');
+var moment = require("moment")
 var input = process.argv;
 var command = process.argv[2];
 
@@ -48,26 +49,32 @@ function concertThis(name) {
     if (name === "") {
         name = "Trampled By Turtles";
     }
-    console.log(name.split("+ ").join(""));
+
+    var band = name.split("+ ").join("");
+
     // set the search  
     var search = "https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp&limit=1"
 
     // get the data
-    axios.get(search).then(function ( response) {
-        // if (err) {
-        //     return console.log("There was an error: " + err);
-        // }
-        
-        console.log("Artist: " + response.data[0].lineup[0]);
-        console.log("-----------------------------------");
-        // date = response.data[0].datetime.split("T").slice(0, 1).join(" ");
-        for (var i = 0; i < 10; i++) {
-            console.log(response.data[i].venue.city);
-            console.log(response.data[i].venue.name);
-            console.log(response.data[i].datetime.split("T").slice(0, 1).join(" "));
-            console.log("-----------------------------------");
-        }
-    })
+    axios.get(search).then(function (response) {
+            if (response.data.Response === 'False') {
+                console.log(band + " was not found.")
+            } else {
+
+                console.log("Artist: " + band);
+                console.log("-----------------------------------");
+                // date = response.data[0].datetime.split("T").slice(0, 1).join(" ");
+                for (var i = 0; i < 10; i++) {
+                    console.log(response.data[i].venue.city);
+                    console.log(response.data[i].venue.name);
+                    console.log(response.data[i].datetime.split("T").slice(0, 1).join(" "));
+                    console.log("-----------------------------------");
+                }
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 } // end function
 
 
@@ -77,14 +84,18 @@ function spotifyThis(name) {
     if (name === "") {
         name = "Never gonna give you up";
     }
-    
+
     var spotify = new Spotify({
         id: process.env.SPOTIFY_ID,
         secret: process.env.SPOTIFY_SECRET
     });
-    spotify.search({ type: 'track', query: name, limit: 1}, function (err, data) {
+    spotify.search({
+        type: 'track',
+        query: name,
+        limit: 1
+    }, function (err, data) {
         if (err) {
-            return console.log('Error occurred: ' + err);
+            return console.log("There was an error: " + err);
         }
         // console.log(JSON.stringify(data, null, 2));
         console.log("-----------------------------------");
@@ -103,34 +114,39 @@ function spotifyThis(name) {
 
 
 function movieThis(name) {
-    console.log("MovieThis is working");
+    // console.log("MovieThis is working");
     if (name === "") {
         name = "Layer Cake";
     }
-    console.log(name);
+    movie = name.split("+ ").join("");
+    console.log(movie);
     // set the search
     var search = "http://www.omdbapi.com/?t=" + name + "&apikey=trilogy";
-    
+
     // get the data
     axios.get(search).then(function (response) {
-        // if (err) {
-        //     return console.log("There was an error: " + err);
-        // }
-        console.log("-----------------------------------");
-        console.log("Movie: " + response.data.Title);
-        console.log("Year: " + response.data.Released);
-        console.log("IMDB Rating: " + response.data.imdbRating);
-        if (response.data.Ratings[1]) {
-            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
-        } else {
-            console.log("Rotten Tomatoes Rating: None");
-        }
-        console.log("Country: " + response.data.Country);
-        console.log("Language: " + response.data.Language);
-        console.log("Plot: " + response.data.Plot);
-        console.log("Actors: " + response.data.Actors);
-        console.log("-----------------------------------");
-    });
+            if (response.data.Response === 'False') {
+                console.log(movie + " was not found.")
+            } else {
+                console.log("-----------------------------------");
+                console.log("Movie: " + response.data.Title);
+                console.log("Year: " + response.data.Released);
+                console.log("IMDB Rating: " + response.data.imdbRating);
+                if (response.data.Ratings[1]) {
+                    console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+                } else {
+                    console.log("Rotten Tomatoes Rating: None");
+                }
+                console.log("Country: " + response.data.Country);
+                console.log("Language: " + response.data.Language);
+                console.log("Plot: " + response.data.Plot);
+                console.log("Actors: " + response.data.Actors);
+                console.log("-----------------------------------");
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 }; // end function
 
 
