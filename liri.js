@@ -48,13 +48,17 @@ function concertThis(name) {
     if (name === "") {
         name = "Trampled By Turtles";
     }
-
+    console.log(name.split("+ ").join(""));
     // set the search  
     var search = "https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp&limit=1"
 
     // get the data
-    axios.get(search).then(function (response) {
-        console.log("Artist: " + name);
+    axios.get(search).then(function ( response) {
+        // if (err) {
+        //     return console.log("There was an error: " + err);
+        // }
+        
+        console.log("Artist: " + response.data[0].lineup[0]);
         console.log("-----------------------------------");
         // date = response.data[0].datetime.split("T").slice(0, 1).join(" ");
         for (var i = 0; i < 10; i++) {
@@ -73,25 +77,25 @@ function spotifyThis(name) {
     if (name === "") {
         name = "Never gonna give you up";
     }
+    
     var spotify = new Spotify({
         id: process.env.SPOTIFY_ID,
         secret: process.env.SPOTIFY_SECRET
     });
-    spotify.search({
-        type: 'track',
-        query: name,
-        limit: 1
-    }, function (err, data) {
+    spotify.search({ type: 'track', query: name, limit: 1}, function (err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
-
         // console.log(JSON.stringify(data, null, 2));
         console.log("-----------------------------------");
         console.log("Artist: " + data.tracks.items[0].album.artists[0].name);
         console.log("Song: " + data.tracks.items[0].name);
         console.log("Album: " + data.tracks.items[0].album.name);
-        console.log("Sample: " + data.tracks.items[0].preview_url);
+        if (data.tracks.items[0].preview_url) {
+            console.log("Sample: " + data.tracks.items[0].preview_url);
+        } else {
+            console.log("Sample:  Sorry no sample available for " + name);
+        }
         console.log("-----------------------------------");
     });
 } // end function
@@ -99,17 +103,19 @@ function spotifyThis(name) {
 
 
 function movieThis(name) {
-    // console.log("MovieThis is working");
+    console.log("MovieThis is working");
     if (name === "") {
         name = "Layer Cake";
     }
-
+    console.log(name);
     // set the search
-    var search = "http://www.omdbapi.com/?t=" + name + "&plot=short&apikey=trilogy";
-
+    var search = "http://www.omdbapi.com/?t=" + name + "&apikey=trilogy";
+    
     // get the data
     axios.get(search).then(function (response) {
-
+        // if (err) {
+        //     return console.log("There was an error: " + err);
+        // }
         console.log("-----------------------------------");
         console.log("Movie: " + response.data.Title);
         console.log("Year: " + response.data.Released);
