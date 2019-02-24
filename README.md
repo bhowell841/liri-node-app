@@ -13,6 +13,9 @@ https://drive.google.com/file/d/16iDom_5nHwKAeTnyMt1tV_GHTnzIioBM/view?usp=shari
 **Running the program without a command or name results in:
 >Poor choice.  Try: 'concert-this', 'spotify-this-song', 'movie-this', 'do-what-it-says'
 
+
+#**Examples With Defaults
+
 ##**node liri concert-this:
 
 >Artist: Trampled By Turtles
@@ -40,9 +43,37 @@ https://drive.google.com/file/d/16iDom_5nHwKAeTnyMt1tV_GHTnzIioBM/view?usp=shari
 
 
 
+##**node liri spotify-this-song:
+
+>-----------------------------------
+>Artist: Rick Astley
+>Song: Never Gonna Give You Up
+>Album: Whenever You Need Somebody
+>Sample: https://p.scdn.co/mp3-preview/22bf10aff02db272f0a053dff5c0063d729df988?cid=15739bf7613e427c98cc6b81ef9c9654
+>-----------------------------------
 
 
 
-##**spotify-this-song
-##**movie-this
+##**node liri movie-this:
+
+>-----------------------------------
+>Movie: Layer Cake
+>Year: 03 Jun 2005
+>IMDB Rating: 7.3
+>Rotten Tomatoes Rating: 80%
+>Country: UK
+>Language: English, Romanian
+>Plot: A successful cocaine dealer gets two tough assignments from his boss on the eve of his planned early retirement.
+>Actors: Daniel Craig, Tom Hardy, Jamie Foreman, Sally Hawkins
+>-----------------------------------
+
+
+
 ##**do-what-it-says
+
+>-----------------------------------
+>Artist: Miley Cyrus
+>Song: Wrecking Ball
+>Album: Bangerz (Deluxe Version)
+>Sample: https://p.scdn.co/mp3-preview/73f134920237db5f77576099534ac22fd6773b96?cid=15739bf7613e427c98cc6b81ef9c9654
+>-----------------------------------
