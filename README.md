@@ -7,73 +7,33 @@ Liri Node App is a homework assignment for the UNC Coding Boot Camp.  This progr
 See how it works in this video:
 https://drive.google.com/file/d/16iDom_5nHwKAeTnyMt1tV_GHTnzIioBM/view?usp=sharing
 
-**Running the program:
+###**Running the program:
 >node liri command name
 
-**Running the program without a command or name results in:
+###**Running the program without a command or name results in:
 >Poor choice.  Try: 'concert-this', 'spotify-this-song', 'movie-this', 'do-what-it-says'
 
 
 #**Examples With Defaults
 
-##**node liri concert-this:
+##**node liri concert-this (uses the default band "Trampled by Turtles):
 
->Artist: Trampled By Turtles
->-----------------------------------
->El Prado
->Taos Mesa Brewing
->02/24/2019
->-----------------------------------
->Tulsa
->Cain's Ballroom
->02/26/2019
->-----------------------------------
->Fayetteville
->George's Majestic Lounge
->02/27/2019
->-----------------------------------
->Dallas
->The Rustic 
->02/28/2019
->-----------------------------------
->New Braunfels
->Gruene Hall
->03/01/2019
->-----------------------------------
+<img width="330" alt="screen shot 2019-02-24 at 2 57 00 pm" src="https://user-images.githubusercontent.com/17474969/53304697-5e272280-3846-11e9-89df-22042faa11cc.png">
 
 
 
-##**node liri spotify-this-song:
+##**node liri spotify-this-song (uses the default song "Never Gonna Give You Up"):
 
->-----------------------------------
->Artist: Rick Astley n\
->Song: Never Gonna Give You Up n\
->Album: Whenever You Need Somebody n\
->Sample: https://p.scdn.co/mp3-preview/22bf10aff02db272f0a053dff5c0063d729df988?cid=15739bf7613e427c98cc6b81ef9c9654
->-----------------------------------
+<img width="854" alt="screen shot 2019-02-24 at 2 55 47 pm" src="https://user-images.githubusercontent.com/17474969/53304699-62534000-3846-11e9-9836-dab892bbca67.png">
 
 
 
-##**node liri movie-this:
+##**node liri movie-this (uses the default movie "Layer Cake"):
 
->-----------------------------------
->Movie: Layer Cake n\
->Year: 03 Jun 2005 n\
->IMDB Rating: 7.3 n\
->Rotten Tomatoes Rating: 80% n\
->Country: UK n\
->Language: English, Romanian n\
->Plot: A successful cocaine dealer gets two tough assignments from his boss on the eve of his planned early retirement. n\
->Actors: Daniel Craig, Tom Hardy, Jamie Foreman, Sally Hawkins n\
->-----------------------------------
+<img width="878" alt="screen shot 2019-02-24 at 2 55 35 pm" src="https://user-images.githubusercontent.com/17474969/53304698-62534000-3846-11e9-989b-49366a56f164.png">
 
 
 
-##**do-what-it-says
+##**do-what-it-says (uses "Wrecking Ball" from the random.txt file):
 
->-----------------------------------
->Artist: Miley Cyrus n\
->Song: Wrecking Ball n\
->Album: Bangerz (Deluxe Version) n\
->Sample: https://p.scdn.co/mp3-preview/73f134920237db5f77576099534ac22fd6773b96?cid=15739bf7613e427c98cc6b81ef9c9654
->-----------------------------------
+<img width="859" alt="screen shot 2019-02-24 at 2 53 55 pm" src="https://user-images.githubusercontent.com/17474969/53304700-62534000-3846-11e9-8228-f8ac66644641.png">
